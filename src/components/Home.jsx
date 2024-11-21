@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import './Home.css'; // For custom tweaks if needed
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Bartan from '../assets/Bartan.jpg';
+import Qabarstan from '../assets/Qabarstan.jpg';
+import streetlight from '../assets/streetlight.jpg';
+import Ambulance from '../assets/Ambulance.jpg';
+import Tent from '../assets/tent.jpg'
+import Waterplant from '../assets/Waterplant.jpg'
 
 const Home = () => {
   // State for form inputs
@@ -65,12 +71,12 @@ const Home = () => {
           <h2 className="text-center mb-4">Our Projects</h2>
           <div className="row g-4">
             {[
-              { name: 'Ambulance Service', img: 'https://scontent.fkhi2-2.fna.fbcdn.net/v/t39.30808-6/244366734_866528697391463_3531799277388306533_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHdyK5xfnYhYEYBjdw9SasP_uI3bsBYM7b-4jduwFgztqWCkZbFYk7l-jAYGCdiDet-pNaiA6ycPEw8lNYMtdMv&_nc_ohc=8shaBkSLbkEQ7kNvgF_RH0G&_nc_zt=23&_nc_ht=scontent.fkhi2-2.fna&_nc_gid=ATNwkHhDzw51ouK9rFzq19b&oh=00_AYAo2gRY8pgWzs78fwxr_yGETbYoRYoO9wr87gfbO9pGBg&oe=6743D369', contact: 'John Doe - 1234567890' },
-              { name: 'Free Tent Service', img: 'https://via.placeholder.com/300', contact: 'Jane Smith - 0987654321' },
-              { name: 'Bartan Service', img: 'https://scontent.fkhi2-2.fna.fbcdn.net/v/t39.30808-6/244401068_866528877391445_3091452059413497112_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF2-Uig8AuUYJTQXEniB-TtamLtdxybp_pqYu13HJun-kuJRypJN7eh6uS44D-JwIF1kLBP48QJUVBTUmb7Ev-f&_nc_ohc=olMXX2UiygoQ7kNvgHCbV5e&_nc_zt=23&_nc_ht=scontent.fkhi2-2.fna&_nc_gid=Ag_FuT-s452g_ETYdabLQqh&oh=00_AYAuHQUk2mVBEnko8QOIhlc49WI0hUUDRS3rI6ugco9vHQ&oe=6743F3DC', contact: 'Ali Khan - 1122334455' },
-              { name: 'Water Filter Plant', img: 'https://scontent.fkhi2-2.fna.fbcdn.net/v/t39.30808-6/244257693_866529380724728_2376354950755541470_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFH4Ra0U1zfasDHpnAs5gQsZL5tduHrx7xkvm124evHvAej3zinQJpI-C6y54gzJrJduHCBnZP2yvuaV35tdAbk&_nc_ohc=Z1P1ZjziTe8Q7kNvgEbWpNJ&_nc_zt=23&_nc_ht=scontent.fkhi2-2.fna&_nc_gid=A4IP5WMXgZHWmIP7Ol9kXJJ&oh=00_AYDDJc4-UiIAb592mKebwqcq73-S81zWzSLg1XT48OeEDA&oe=6743EFCF', contact: 'Sara Lee - 5566778899' },
-              { name: 'Qabarstan', img: 'https://via.placeholder.com/300', contact: 'Mike Ross - 2233445566' },
-              { name: 'Street Light', img: 'https://via.placeholder.com/300', contact: 'Rachel Zane - 3344556677' },
+              { name: 'Ambulance Service', img: Ambulance, contact: 'John Doe - 1234567890' },
+              { name: 'Free Tent Service', img: Tent , contact: 'Jane Smith - 0987654321' },
+              { name: 'Bartan Service', img: Bartan, contact: 'Ali Khan - 1122334455' },
+              { name: 'Water Filter Plant', img: Waterplant, contact: 'Sara Lee - 5566778899' },
+              { name: 'Qabarstan', img: Qabarstan, contact: 'Mike Ross - 2233445566' },
+              { name: 'Street Light', img: streetlight, contact: 'Rachel Zane - 3344556677' },
             ].map((project, index) => (
               <div className="col-md-4 col-sm-6" key={index}>
                 <div className="card h-100 shadow-sm">
@@ -130,67 +136,97 @@ const Home = () => {
 
       {/* Contact Us */}
       <section className="contact py-5 bg-light">
-        <div className="container">
-          <h2 className="text-center mb-4">Contact Us</h2>
-          {isSubmitted ? (
-            <div className="alert alert-success" role="alert">
-              Thank you for contacting us! We will get back to you soon.
-            </div>
-          ) : (
-            <form className="row g-3" onSubmit={handleSubmit}>
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Your Name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="col-md-6">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Your Email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="col-12">
-                <input
-                  type="tel"
-                  className="form-control"
-                  placeholder="Your Phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="col-12">
-                <textarea
-                  className="form-control"
-                  placeholder="Your Message"
-                  rows="5"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                ></textarea>
-              </div>
-              <div className="col-12 text-center">
-                <button type="submit" className="btn btn-success">
-                  Submit
-                </button>
-              </div>
-            </form>
-          )}
+  <div className="container">
+    <h2 className="text-center mb-4">Contact Us</h2>
+    {isSubmitted ? (
+      <div className="alert alert-success" role="alert">
+        Thank you for contacting us! We will get back to you soon.
+      </div>
+    ) : (
+      <form
+        className="row g-3"
+        onSubmit={async (e) => {
+          e.preventDefault();
+          setIsSubmitted(false); // Reset submission status if needed
+          try {
+            const response = await fetch('https://formspree.io/f/xnnqzopd', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+              setIsSubmitted(true);
+              setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                message: '',
+              });
+            } else {
+              alert('Error sending message. Please try again.');
+            }
+          } catch (error) {
+            alert('An error occurred. Please check your connection.');
+          }
+        }}
+      >
+        <div className="col-md-6">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Your Name"
+            name="name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
+          />
         </div>
-      </section>
+        <div className="col-md-6">
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Your Email"
+            name="email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            required
+          />
+        </div>
+        <div className="col-12">
+          <input
+            type="tel"
+            className="form-control"
+            placeholder="Your Phone"
+            name="phone"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            required
+          />
+        </div>
+        <div className="col-12">
+          <textarea
+            className="form-control"
+            placeholder="Your Message"
+            rows="5"
+            name="message"
+            value={formData.message}
+            onChange={(e) =>
+              setFormData({ ...formData, message: e.target.value })
+            }
+            required
+          ></textarea>
+        </div>
+        <div className="col-12 text-center">
+          <button type="submit" className="btn btn-success">
+            Submit
+          </button>
+        </div>
+      </form>
+    )}
+  </div>
+</section>
+
     </div>
   );
 };

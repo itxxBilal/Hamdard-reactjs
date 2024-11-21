@@ -13,7 +13,7 @@ const topDonors = [
 const Donation = () => {
   const [copied, setCopied] = useState(false); // Track copy state
 
-  const accountNumber = "123456789"; // Example account number
+  const accountNumber = "0023827000583303"; // Example account number
 
   return (
     <div className="donation-container">
@@ -29,7 +29,7 @@ const Donation = () => {
           <Card className="donation-card">
             <Card.Body>
               <h4>Bank Account Details</h4>
-              <p><strong>Bank Name:</strong> XYZ Bank</p>
+              <p><strong>Bank Name:</strong> HBL Bank</p>
               <p><strong>Account Number:</strong>
                 <span className="account-number">
                   {accountNumber}
@@ -43,8 +43,24 @@ const Donation = () => {
                   </OverlayTrigger>
                 </CopyToClipboard>
               </p>
-              <p><strong>IFSC Code:</strong> XYZ1234</p>
-              <p><strong>Account Type:</strong> Savings</p>
+              <p><strong>Account Holder Name:</strong> Maqbool&Muddsar</p>
+              {/* <p><strong>Account Type:</strong> Savings</p> */}
+              <div className="donation-action">
+                <Button variant="success" className="donate-btn" href="#" target="_blank">
+                  <FaMoneyBillAlt /> Send Your Donation ScreenShort
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
+
+          <Card className="donation-card">
+            <Card.Body>
+              <h4>Bank Account Details</h4>
+              <p><strong>Bank Name:</strong> JazzCash</p>
+              <p><strong>Account Number:</strong>
+                <span className="account-number">03000000000</span></p>
+              <p><strong>Account Holder Name:</strong> Maqbool&Muddsar</p>
+              {/* <p><strong>Account Type:</strong> Savings</p> */}
               <div className="donation-action">
                 <Button variant="success" className="donate-btn" href="#" target="_blank">
                   <FaMoneyBillAlt /> Send Your Donation ScreenShort

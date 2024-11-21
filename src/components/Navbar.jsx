@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';  // Import Link for navigation
 import './Navbar.css'; // Custom styles and animations
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../assets/logo1.png';
+import logo from '../assets/headerlogo.png';
 
 const Navbar = () => {
   return (
