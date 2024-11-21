@@ -1,0 +1,120 @@
+.donation-container {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .donation-heading {
+    font-size: 2.5rem;
+    color: #2c6e3f;
+  }
+  
+  .donation-subheading {
+    font-size: 1.25rem;
+    color: #555;
+  }
+  
+  .donation-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .donation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .donate-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #2c6e3f;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .donate-btn:hover {
+    background-color: #1a4d2a;
+  }
+  
+  .quranic-ayat, .hadith {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+  }
+  
+  .top-donors {
+    margin-top: 3rem;
+  }
+  
+  .donation-section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c6e3f;
+  }
+  
+  .top-donor-card {
+    background-color: #e9f7e7;
+    border: 1px solid #d0e8d5;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .donor-icon {
+    font-size: 2.5rem;
+    color: #2c6e3f;
+  }
+  
+  .top-donor-card h5 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .top-donor-card p {
+    font-size: 1.25rem;
+  }
+  
+  .account-number {
+    font-weight: bold;
+    color: #2c6e3f;
+    margin-right: 10px;
+  }
+  
+  .copy-icon {
+    cursor: pointer;
+    color: #2c6e3f;
+    font-size: 1.5rem;
+    transition: transform 0.2s;
+  }
+  
+  .copy-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  .donation-action {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .donation-container {
+      padding: 1rem;
+    }
+  
+    .donation-heading {
+      font-size: 2rem;
+    }
+  
+    .donation-subheading {
+      font-size: 1rem;
+    }
+  }
+  

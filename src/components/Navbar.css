@@ -1,0 +1,79 @@
+/* General Navbar Styles */
+.navbar {
+  transition: all 0.3s ease-in-out;
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.navbar-logo {
+  width: 40px;
+  height: auto;
+}
+
+/* Hover Effects */
+.nav-link {
+  position: relative;
+  font-size: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #fdfdfd !important;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Donate Button */
+.btn-navy-blue {
+  background-color: #001f3f;
+  border: none;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-navy-blue:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile View */
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+.navbar-toggler-icon {
+  background-image: none;
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* Smooth Dropdown Animation */
+.collapse {
+  transition: all 0.5s ease-in-out;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .navbar-nav {
+      text-align: center;
+  }
+  .nav-item {
+      margin-bottom: 1rem;
+  }
+  .donate-now-btn {
+      width: 100%;
+  }
+}
