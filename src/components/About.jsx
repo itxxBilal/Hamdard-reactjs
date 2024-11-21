@@ -29,7 +29,7 @@ const About = () => {
         <h1 className="text-center mb-4">About Hamdard Committee</h1>
         <div className="text-center mb-4">
           <img
-            src= {logo} // Replace with your logo URL
+            src= {logo} 
             alt="Hamdard Committee Logo"
             className="img-fluid"
             style={{ maxWidth: "150px" }}
@@ -57,9 +57,9 @@ const About = () => {
         <h2 className="text-center mb-4">Our Team</h2>
         <div className="row text-center">
           {[
-            { role: "Founder", name: "Dr. Ali Ahmad", phone: "123-456-7890", email: "founder@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/419198712_6788803617915836_3717419480588886131_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFuH56bzRXuauG8pwB1eUWN_rJhKd2DSWX-smEp3YNJZWsosLDhFjc8bpJbTRHalO9dE0eJgwvZOQI4aSwIqTei&_nc_ohc=oeK3-vh--1UQ7kNvgH4v_kB&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AfRItO0bS9T0UOioDoUlmyQ&oh=00_AYBtScJ5hbEZQ_N6AxuFrHq3SpbvdWZTX7oPbu_mjE0_EA&oe=6744A279" },
-            { role: "President", name: "Zafar Iqbal", phone: "987-654-3210", email: "president@example.com", img: President },
-            { role: "General Secretary", name: "Kamran Haroon", phone: "567-890-1234", email: "secretary@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/395621068_3725662627666493_7954102251536744491_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvSwN8MZ6gim18Ocdq0vTjlOD85OzglXWU4Pzk7OCVdbgfCyW3HAxP2hovOdcALqiqbN5ZFEiuWcBALy9qNO57&_nc_ohc=coZBqlJfrUEQ7kNvgEzPYYG&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AUlJIYZf2_0v1UOtsvvp0lf&oh=00_AYAHUsLh4Q6QateHG_D1nM9U_Rd6F21fvWkVFdnXDl3iLA&oe=6744A255" },
+            { role: "Founder", name: "Dr. Ali Ahmad", phone: "+923007935207", email: "founder@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/419198712_6788803617915836_3717419480588886131_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFuH56bzRXuauG8pwB1eUWN_rJhKd2DSWX-smEp3YNJZWsosLDhFjc8bpJbTRHalO9dE0eJgwvZOQI4aSwIqTei&_nc_ohc=oeK3-vh--1UQ7kNvgH4v_kB&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AfRItO0bS9T0UOioDoUlmyQ&oh=00_AYBtScJ5hbEZQ_N6AxuFrHq3SpbvdWZTX7oPbu_mjE0_EA&oe=6744A279" },
+            { role: "President", name: "Zafar Iqbal", phone: "+923215716156", email: "president@example.com", img: President },
+            { role: "General Secretary", name: "Kamran Haroon", phone: "+923054141548", email: "secretary@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/395621068_3725662627666493_7954102251536744491_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvSwN8MZ6gim18Ocdq0vTjlOD85OzglXWU4Pzk7OCVdbgfCyW3HAxP2hovOdcALqiqbN5ZFEiuWcBALy9qNO57&_nc_ohc=coZBqlJfrUEQ7kNvgEzPYYG&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AUlJIYZf2_0v1UOtsvvp0lf&oh=00_AYAHUsLh4Q6QateHG_D1nM9U_Rd6F21fvWkVFdnXDl3iLA&oe=6744A255" },
             // { role: "Member", name: "Member 1", phone: "111-222-3333", email: "member1@example.com", img: "https://via.placeholder.com/150" },
             // { role: "Member", name: "Member 2", phone: "444-555-6666", email: "member2@example.com", img: "https://via.placeholder.com/150" },
             // Add more members as needed

@@ -142,3 +142,14 @@
   color: white;
   margin-top: -10px;
 }
+.carousel-inner img {
+  object-fit: cover;
+  border-radius: 15px; /* Adds rounded corners */
+  max-height: 60vh; /* Ensures a consistent height */
+}
+
+.carousel-caption h5 {
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+  padding: 10px;
+  border-radius: 10px;
+}

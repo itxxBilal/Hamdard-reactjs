@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import MediaGallery from './components/MediaGallery';
-import AdminDashboard from './components/AdminDashboard'; // Import Admin Dashboard
 import Footer from './components/Footer';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -20,7 +19,6 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/media" element={<MediaGallery />} />
         <Route path="/donate" element={<Donation/>} />
-        <Route path="/admin" element={<AdminDashboard />} /> {/* Admin Dashboard Route */}
       </Routes>
       <Footer />
     </Router>
