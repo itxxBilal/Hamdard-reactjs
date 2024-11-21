@@ -7,6 +7,7 @@ import streetlight from '../assets/streetlight.jpg';
 import Ambulance from '../assets/Ambulance.jpg';
 import Tent from '../assets/tent.jpg'
 import Waterplant from '../assets/Waterplant.jpg'
+import medical2 from "../assets/Media Gallery/medical2.jpeg";
 
 const Home = () => {
   // State for form inputs
@@ -98,10 +99,10 @@ const Home = () => {
           <h2 className="text-center mb-4">Upcoming Projects</h2>
           <div className="row g-4">
             {[
-              { name: 'Medical Camp', img: 'https://via.placeholder.com/300' },
-              { name: 'Marriage Hall', img: 'https://via.placeholder.com/300' },
-              { name: 'Sports Ground', img: 'https://via.placeholder.com/300' },
-              { name: 'Others', img: 'https://via.placeholder.com/300' },
+              { name: 'Hamdard Committee free Community Medical Camp', img: medical2  },
+              { name: 'Marriage Hall', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TSU3EoZ3r8aVNztKddgcYe9rV8XkVTXQpA&s' },
+              { name: 'Sports Ground', img: 'https://img.freepik.com/free-vector/gradient-baseball-background_23-2150742165.jpg?semt=ais_hybrid' },
+              { name: 'Annual Event', img: 'https://www.lyricland.co.uk/resources/Annual-Events-Logo.png' },
             ].map((project, index) => (
               <div className="col-md-3 col-sm-6" key={index}>
                 <div className="card h-100 shadow-sm">

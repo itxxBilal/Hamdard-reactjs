@@ -5,9 +5,9 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import "./Donation.css";
 
 const topDonors = [
-  { name: "Ali Khan", amount: "$500" },
-  { name: "Sarah Ahmed", amount: "$400" },
-  { name: "Muhammad Zaid", amount: "$350" },
+  { name: "Muhammad Hanif", amount: "Rs:6500" },
+  { name: "Muhammad Asif", amount: "Rs:1000" },
+  { name: "Muhammad Anwar", amount: "Rs:1000" },
 ];
 
 const Donation = () => {
@@ -99,7 +99,7 @@ const Donation = () => {
       </Row>
 
       <div className="top-donors">
-        <h3 className="donation-section-title">Our Top Donors</h3>
+        <h3 className="donation-section-title">Recent Donors</h3>
         <Row>
           {topDonors.map((donor, index) => (
             <Col key={index} md={4} className="mb-4">
