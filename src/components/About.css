@@ -104,3 +104,20 @@
     transition: all 0.3s ease-in-out;
   }
   
+  .team-card, .department-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .team-card:hover, .department-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-header h4 {
+    transition: color 0.3s;
+  }
+  
+  .department-card:hover .card-header h4 {
+    color: #ffc107;
+  }
+  

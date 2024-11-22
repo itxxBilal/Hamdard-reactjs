@@ -18,9 +18,76 @@ const About = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Thank you for joining as a member!");
-    setFormData({ name: "", whatsapp: "", cnic: "", address: "" });
+
+    fetch("https://formspree.io/f/xnnqzopd", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Thank you for joining as a member!");
+          setFormData({ name: "", whatsapp: "", cnic: "", address: "" });
+        } else {
+          alert("There was an error. Please try again later.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("There was an error. Please try again later.");
+      });
   };
+
+  const departments = [
+    {
+      name: "Finance",
+      chairman: "Zafar Iqbal",
+      viceChairman: "Kamran",
+      members: ["Muhammad Awais", "Muhammad Tabraiz", "Usman Gill"],
+    },
+    {
+      name: "Ambulance",
+      chairman: "Abdul Jabbar",
+      viceChairman: "Dr. Ali Ahmad",
+      members: ["Muair Ahmad", "Muhammad Awais", "Muhammad Javed", "Wajid Ali"],
+    },
+    {
+      name: "Eid Gha ",
+      chairman: "Muhammad Yaseen",
+      viceChairman: "Abdul Rasheed",
+      members: ["Muhammad Umar", "Ghulam Hussain", "Rana Waqar", "Maqbool Ahmad"],
+    },
+    {
+      name: "School",
+      chairman: "Muhammad Tabraiz",
+      viceChairman: "Zafar Iqbal",
+      members: ["Abdul Rasheed", "Shahbaz Tahiri", "Dr. Ali Ahmad", "Haji Saif", "Kamran Haroon"],
+    },
+    {
+      name: "Bartan (Utensils)",
+      chairman: "Shahbaz Tahiri",
+      viceChairman: "Sharif Shakir",
+      members: ["Muhammad Yaseen", "Abdul Jabbar", "Khalil Ahmad"],
+    },
+    {
+      name: "Water Filter",
+      chairman: "Abdul Rasheed",
+      viceChairman: "Abdul Jabbar",
+      members: ["Ghulam Hussain", "Muhammad Yaseen", "Khalil Ahmad", "Muhammad Umar", "Dr. Ali Ahmad"],
+    },
+    {
+      name: "Usher",
+      chairman: "Kamran Haroon",
+      viceChairman: "Usman Gill",
+      members: ["Maqbool Ahmad", "Munir Ahmad", "Haji Saif", "Muhammad Tabraiz"],
+    },
+    {
+      name: "New Planning",
+      chairman: "Dr. Ali Ahmad",
+      viceChairman: "Zafar Iqbal",
+      members: ["Usman Gul", "Muhammad Awais", "Wajid Ali", "Rana Waqar", "Muhammad Tabraiz"],
+    }
+  ];
 
   return (
     <section id="about" className="about-section py-5">
@@ -57,12 +124,9 @@ const About = () => {
         <h2 className="text-center mb-4">Our Team</h2>
         <div className="row text-center">
           {[
-            { role: "Founder", name: "Dr. Ali Ahmad", phone: "+923007935207", email: "founder@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/419198712_6788803617915836_3717419480588886131_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFuH56bzRXuauG8pwB1eUWN_rJhKd2DSWX-smEp3YNJZWsosLDhFjc8bpJbTRHalO9dE0eJgwvZOQI4aSwIqTei&_nc_ohc=oeK3-vh--1UQ7kNvgH4v_kB&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AfRItO0bS9T0UOioDoUlmyQ&oh=00_AYBtScJ5hbEZQ_N6AxuFrHq3SpbvdWZTX7oPbu_mjE0_EA&oe=6744A279" },
+            { role: "Founder", name: "Dr. Ali Ahmad", phone: "+923007935207", email: "founder@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/419198712_6788803617915836_3717419480588886131_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFuH56bzRXuauG8pwB1eUWN_rJhKd2DSWX-smEp3YNJZWsosLDhFjc8bpJbTRHalO9dE0eJgwvZOQI4aSwIqTei&_nc_ohc=oeK3-vh--1UQ7kNvgFCMQpx&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AO3YCIuJ5i4ZtAotbyGV34Y&oh=00_AYCwL9bX2DoDBmyG_yvmwcZ1S0J0VpgwkgrRStjgpUiQXg&oe=6745F3F9" },
             { role: "President", name: "Zafar Iqbal", phone: "+923215716156", email: "president@example.com", img: President },
-            { role: "General Secretary", name: "Kamran Haroon", phone: "+923054141548", email: "secretary@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/395621068_3725662627666493_7954102251536744491_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvSwN8MZ6gim18Ocdq0vTjlOD85OzglXWU4Pzk7OCVdbgfCyW3HAxP2hovOdcALqiqbN5ZFEiuWcBALy9qNO57&_nc_ohc=coZBqlJfrUEQ7kNvgEzPYYG&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AUlJIYZf2_0v1UOtsvvp0lf&oh=00_AYAHUsLh4Q6QateHG_D1nM9U_Rd6F21fvWkVFdnXDl3iLA&oe=6744A255" },
-            // { role: "Member", name: "Member 1", phone: "111-222-3333", email: "member1@example.com", img: "https://via.placeholder.com/150" },
-            // { role: "Member", name: "Member 2", phone: "444-555-6666", email: "member2@example.com", img: "https://via.placeholder.com/150" },
-            // Add more members as needed
+            { role: "General Secretary", name: "Kamran Haroon", phone: "+923054141548", email: "secretary@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/395621068_3725662627666493_7954102251536744491_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvSwN8MZ6gim18Ocdq0vTjlOD85OzglXWU4Pzk7OCVdbgfCyW3HAxP2hovOdcALqiqbN5ZFEiuWcBALy9qNO57&_nc_ohc=eoq1oo8n_ssQ7kNvgGeUJzt&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=Aflpu2ms77rHpHSsGdcMiEV&oh=00_AYBoQYJVdSbLtxWCUDwx8XRF3rJrEa_RmrnnklEeMaL1eQ&oe=6745F3D5" },
           ].map((member, index) => (
             <div className="col-md-4 mb-4" key={index}>
               <div className="card shadow-sm">
@@ -78,6 +142,27 @@ const About = () => {
                   </h6>
                   <p className="card-text">Phone: {member.phone}</p>
                   <p className="card-text">Email: {member.email}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Departments Section */}
+        <h2 className="text-center mb-4">Our Departments</h2>
+        <div className="row text-center">
+          {departments.map((dept, index) => (
+            <div className="col-md-6 col-lg-4 mb-4" key={index}>
+              <div className="card department-card shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">{dept.name} Department</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">Chairman: {dept.chairman}</h6>
+                  <h6 className="card-subtitle mb-2 text-muted">Vice Chairman: {dept.viceChairman}</h6>
+                  <ul className="list-unstyled">
+                    {dept.members.map((member, i) => (
+                      <li key={i}>{member}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
