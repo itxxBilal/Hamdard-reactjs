@@ -59,7 +59,7 @@ const Footer = () => {
 
         {/* Developer Signature */}
         <div className="footer-signature">
-          <p>
+          <p className="bilal"> 
             Design & Developed by{" "}
             <a
               href="https://itx-bilal.vercel.app/"

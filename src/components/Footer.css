@@ -1,7 +1,7 @@
 /* Footer Styles */
 .footer {
   background-color: rgb(26, 135, 84) !important; /* Updated background color */
-  color: #f8f9fa;
+  color: #f8f9fa !important;
   font-family: 'Roboto', sans-serif;
   padding: 2rem 0;
   text-align: center;
@@ -21,12 +21,12 @@
   text-transform: uppercase;
   margin-top: 0.5rem;
   animation: slideIn 1s ease-in-out;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .footer-description {
   font-size: 1rem;
-  color: #e9ecef;
+  color: #e9ecef !important;
   margin: 0.5rem 0 1.5rem;
   max-width: 500px;
   margin-left: auto;
@@ -36,7 +36,7 @@
 
 .footer-social-icons a {
   font-size: 1.5rem;
-  color: #f8f9fa;
+  color: #f8f9fa !important;
   margin: 0 0.8rem;
   transition: transform 0.3s ease, color 0.3s ease;
   display: inline-block;
@@ -67,10 +67,12 @@
 
 .footer-signature {
   font-size: 0.95rem;
-  color: #f8f9fa;
+  color: #f8f9fa !important;
   margin-top: 1rem;
 }
-
+.bilal{
+  color: white !important;
+}
 .footer-signature .designer-name {
   color: #ffc107;
   text-decoration: none;
@@ -79,13 +81,13 @@
 }
 
 .footer-signature .designer-name:hover {
-  color: #ffffff;
+  color: #ffffff !important;
   text-shadow: 0px 0px 10px #ffffff;
 }
 
 .footer-copyright {
   font-size: 0.9rem;
-  color: #e9ecef;
+  color: #e9ecef !important;
   margin-top: 1rem;
 }
 

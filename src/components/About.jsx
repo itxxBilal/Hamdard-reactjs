@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import './About.css'; 
 import logo from '../assets/headerlogo.png';
 import President from '../assets/Team/President.png';
-
+import Kamran from '../assets/Team/Kamran.jpg';
+import Ali from '../assets/Team/Ali.jpg';
 const About = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -49,7 +50,7 @@ const About = () => {
       name: "Ambulance",
       chairman: "Abdul Jabbar",
       viceChairman: "Dr. Ali Ahmad",
-      members: ["Muair Ahmad", "Muhammad Awais", "Muhammad Javed", "Wajid Ali"],
+      members: ["Munair Ahmad", "Muhammad Awais", "Muhammad Javed", "Wajid Ali"],
     },
     {
       name: "Eid Gha ",
@@ -124,9 +125,9 @@ const About = () => {
         <h2 className="text-center mb-4">Our Team</h2>
         <div className="row text-center">
           {[
-            { role: "Founder", name: "Dr. Ali Ahmad", phone: "+923007935207", email: "founder@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/419198712_6788803617915836_3717419480588886131_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFuH56bzRXuauG8pwB1eUWN_rJhKd2DSWX-smEp3YNJZWsosLDhFjc8bpJbTRHalO9dE0eJgwvZOQI4aSwIqTei&_nc_ohc=oeK3-vh--1UQ7kNvgFCMQpx&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AO3YCIuJ5i4ZtAotbyGV34Y&oh=00_AYCwL9bX2DoDBmyG_yvmwcZ1S0J0VpgwkgrRStjgpUiQXg&oe=6745F3F9" },
+            { role: "Founder", name: "Dr. Ali Ahmad", phone: "+923007935207", email: "founder@example.com", img: Ali },
             { role: "President", name: "Zafar Iqbal", phone: "+923215716156", email: "president@example.com", img: President },
-            { role: "General Secretary", name: "Kamran Haroon", phone: "+923054141548", email: "secretary@example.com", img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/395621068_3725662627666493_7954102251536744491_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvSwN8MZ6gim18Ocdq0vTjlOD85OzglXWU4Pzk7OCVdbgfCyW3HAxP2hovOdcALqiqbN5ZFEiuWcBALy9qNO57&_nc_ohc=eoq1oo8n_ssQ7kNvgGeUJzt&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=Aflpu2ms77rHpHSsGdcMiEV&oh=00_AYBoQYJVdSbLtxWCUDwx8XRF3rJrEa_RmrnnklEeMaL1eQ&oe=6745F3D5" },
+            { role: "General Secretary", name: "Kamran Haroon", phone: "+923054141548", email: "secretary@example.com", img: Kamran },
           ].map((member, index) => (
             <div className="col-md-4 mb-4" key={index}>
               <div className="card shadow-sm">

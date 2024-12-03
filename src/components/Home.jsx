@@ -7,7 +7,11 @@ import streetlight from "../assets/streetlight.jpg";
 import Ambulance from "../assets/Ambulance.jpg";
 import Tent from "../assets/tent.jpg";
 import Waterplant from "../assets/Waterplant.jpg";
-import medical2 from "../assets/Media Gallery/medical2.jpeg";
+import medical2 from "../assets/Media Gallery/2.jpeg";
+import Guest from '../assets/HomePageImg/guest.jpg';
+import AC from '../assets/HomePageImg/Ac.jpg'
+import Plant from '../assets/HomePageImg/Plant.jpg'
+
 
 const Home = () => {
   // State for form inputs
@@ -49,16 +53,16 @@ const Home = () => {
         <div className="carousel-indicators">
           {[
             {
-              img: "https://scontent.fkhi2-2.fna.fbcdn.net/v/t39.30808-6/451299449_807402014910411_6494957297024501573_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHKkAOpgIZbgjhk0_Nk4pcgpnaP8wIg1tCmdo_zAiDW0ATwtUuwaGj4DHkFhQ_JMzJyjhJ5JkeslWrubJFZ-lPJ&_nc_ohc=BifsUCLXP04Q7kNvgFbYguR&_nc_zt=23&_nc_ht=scontent.fkhi2-2.fna&_nc_gid=APhj6zu1TvPAOa1JpaGwOkc&oh=00_AYAtB8b_TSsfjgk1XNWrDfcGMVZXAL4qf9mPJFLUbi5ORQ&oe=6744006F",
-              caption: "Hamdard Committee Guest",
+              img: Guest,
+              caption: "1",
             },
             {
-              img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/424645813_709078028076144_438974091807255429_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHYf4EQqlGQrmZH2Y9gp-JBRmxnWVcqrfhGbGdZVyqt-AlqjUwcGO3z4Us-forW2GvOVodFEaFB_QpwabEH9jji&_nc_ohc=Wd9ueNn4tNcQ7kNvgGat6XY&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=ATglsGeSQqOi-6F8Lw4aC9U&oh=00_AYA04keXBHZUULkzpn3ZRvrNCSYqW7wuo7f_W7TJWdZhQw&oe=6743DA82",
-              caption: "Free Plant Distribution",
+              img: Plant,
+              caption: "2",
             },
             {
-              img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/400908734_664127905904490_3870588051589845726_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFcUlX5Fgr5eCHmYnJ4OF6garnO7K8Z_45quc7srxn_jh7OWqBT7Uu1j6cl6n-WZGHR6LzUu7VISDL12nsQRSq4&_nc_ohc=lBH2zraTvLAQ7kNvgHt12a5&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AKv4VF_npR2W3mJ9JkWKd6h&oh=00_AYAGoiZ12zXrD4yngV1eJM-dcn2gm48cwODY3y-CPtm0KQ&oe=6743FAB0",
-              caption: "Meet with AC",
+              img: AC,
+              caption: "3",
             },
           ].map((slide, index) => (
             <button
@@ -77,16 +81,16 @@ const Home = () => {
         <div className="carousel-inner">
           {[
             {
-              img: "https://scontent.fkhi2-2.fna.fbcdn.net/v/t39.30808-6/451299449_807402014910411_6494957297024501573_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHKkAOpgIZbgjhk0_Nk4pcgpnaP8wIg1tCmdo_zAiDW0ATwtUuwaGj4DHkFhQ_JMzJyjhJ5JkeslWrubJFZ-lPJ&_nc_ohc=BifsUCLXP04Q7kNvgFbYguR&_nc_zt=23&_nc_ht=scontent.fkhi2-2.fna&_nc_gid=APhj6zu1TvPAOa1JpaGwOkc&oh=00_AYAtB8b_TSsfjgk1XNWrDfcGMVZXAL4qf9mPJFLUbi5ORQ&oe=6744006F",
-              caption: "Hamdard Committee Team and Guest",
+              img: Guest,
+              caption: "",
             },
             {
-              img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/424645813_709078028076144_438974091807255429_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHYf4EQqlGQrmZH2Y9gp-JBRmxnWVcqrfhGbGdZVyqt-AlqjUwcGO3z4Us-forW2GvOVodFEaFB_QpwabEH9jji&_nc_ohc=Wd9ueNn4tNcQ7kNvgGat6XY&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=ATglsGeSQqOi-6F8Lw4aC9U&oh=00_AYA04keXBHZUULkzpn3ZRvrNCSYqW7wuo7f_W7TJWdZhQw&oe=6743DA82",
-              caption: "Free Plant Distribution",
+              img: Plant,
+              caption: "",
             },
             {
-              img: "https://scontent.fkhi2-3.fna.fbcdn.net/v/t39.30808-6/400908734_664127905904490_3870588051589845726_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFcUlX5Fgr5eCHmYnJ4OF6garnO7K8Z_45quc7srxn_jh7OWqBT7Uu1j6cl6n-WZGHR6LzUu7VISDL12nsQRSq4&_nc_ohc=lBH2zraTvLAQ7kNvgHt12a5&_nc_zt=23&_nc_ht=scontent.fkhi2-3.fna&_nc_gid=AKv4VF_npR2W3mJ9JkWKd6h&oh=00_AYAGoiZ12zXrD4yngV1eJM-dcn2gm48cwODY3y-CPtm0KQ&oe=6743FAB0",
-              caption: "Guest",
+              img: AC,
+              caption: "",
             },
           ].map((slide, index) => (
             <div

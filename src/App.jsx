@@ -9,6 +9,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Donation from './components/Donation';
+import AdminDashboard from "./components/AdminDashboard"
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/media" element={<MediaGallery />} />
         <Route path="/donate" element={<Donation/>} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
       <Footer />
     </Router>
