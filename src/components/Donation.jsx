@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { FaCopy, FaMoneyBillAlt, FaUsers, FaWhatsapp } from "react-icons/fa";
-import { Card, Row, Col, Button, Tooltip, OverlayTrigger, Form } from "react-bootstrap";
+import { FaCopy, FaWhatsapp } from "react-icons/fa";
+import { Carousel, Card, Row, Col, Button, Tooltip, OverlayTrigger, Form } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import jazzcash from '../assets/images/jazzCash.webp';
+import HBL from '../assets/images/HBL.png';
 import "./Donation.css";
 
 const topDonors = [
@@ -11,11 +13,9 @@ const topDonors = [
 ];
 
 const Donation = () => {
-  const [copied, setCopied] = useState(false); // Track copy state
+  const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({ name: "", whatsapp: "" });
-  const [showPopup, setShowPopup] = useState(false); // Track the popup state
-
-  const accountNumber = "0023827000583303"; // Example account number
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -24,96 +24,110 @@ const Donation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle Formspree submission (e.g., through an API call or Formspree)
-    setShowPopup(true); // Show popup after form submission
+    setShowPopup(true);
     setFormData({ name: "", whatsapp: "" });
   };
 
   return (
-    <div className="donation-container">
-      <div className="text-center my-5">
-        <h2 className="donation-heading">Your Donation Helps the Needy</h2>
-        <p className="donation-subheading">
-          "Your donations will be used for the welfare of the poor and underprivileged members of our community."
+    <div className="donation-section">
+      {/* Floating WhatsApp Icon */}
+      <a
+        href="https://wa.me/+923058880172"
+        className="floating-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaWhatsapp size={28} />
+      </a>
+
+      {/* Header Section */}
+      <div className="text-center mb-5">
+        <h2 className="donation-heading">Support Hamdard Committee</h2>
+        <p className="donation-description">
+          "Your contributions empower us to provide welfare to the needy and improve the lives of the underprivileged."
         </p>
       </div>
 
-      <Row className="my-4">
-        <Col md={6}>
-          <Card className="donation-card mb-4">
+      {/* Recent Donors */}
+      <div className="recent-donors mb-4">
+        <h3 className="text-center">Recent Donors</h3>
+        <Carousel interval={3000} indicators={false}>
+          {topDonors.map((donor, index) => (
+            <Carousel.Item key={index}>
+              <Card className="donor-card text-center mx-auto">
+                <Card.Body>
+                  <h5 className="donor-name">{donor.name}</h5>
+                  <p className="donor-amount">{donor.amount}</p>
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+        {/* Hadith Section */}
+        <div className="hadith-section text-center mt-4">
+          <blockquote className="blockquote">
+            <p>
+              "بہترین صدقہ وہ ہے جو کسی ضرورت مند کو دیا جائے۔"<br />
+              <cite>- صحیح بخاری</cite>
+            </p>
+          </blockquote>
+        </div>
+      </div>
+
+      {/* Bank Details */}
+      <Row className="mb-5">
+        <Col md={6} className="mb-3">
+          <Card className="donation-card bank-card">
             <Card.Body>
-              <h4>Bank Account Details</h4>
-              <p><strong>Bank Name:</strong> HBL Bank</p>
+              <div className="logo-section">
+                <img src={HBL} alt="HBL Bank" className="bank-logo" />
+              </div>
+              <h4>HBL Bank</h4>
               <p>
-                <strong>Account Number:</strong>
-                <span className="account-number ms-2">{accountNumber}</span>
-                <CopyToClipboard text={accountNumber} onCopy={() => setCopied(true)}>
+                <strong>Account Number:</strong> 0023827000583303
+                <CopyToClipboard text="0023827000583303" onCopy={() => setCopied(true)}>
                   <OverlayTrigger
                     placement="top"
-                    overlay={<Tooltip id="copy-tooltip">{copied ? "Copied!" : "Copy to clipboard"}</Tooltip>}
-                    onExit={() => setCopied(false)} // Reset tooltip on exit
+                    overlay={<Tooltip>{copied ? "Copied!" : "Copy to clipboard"}</Tooltip>}
                   >
                     <FaCopy className="copy-icon ms-2" />
                   </OverlayTrigger>
                 </CopyToClipboard>
               </p>
-              <p><strong>Account Holder Name:</strong> Maqbool & Muddsar</p>
+              <p><strong>Account Holder:</strong> Maqbool & Muddsar</p>
             </Card.Body>
           </Card>
-
-          {/* JazzCash Card */}
-          {/* <Card className="donation-card">
-            <Card.Body>
-              <h4>Bank Account Details</h4>
-              <p><strong>Service:</strong> JazzCash</p>
-              <p><strong>Account Number:</strong> 03000000000</p>
-              <p><strong>Account Holder Name:</strong> Maqbool & Muddsar</p>
-            </Card.Body>
-          </Card> */}
         </Col>
-
-        {/* Charity Quotes Section */}
-        <Col md={6}>
-          <Card className="donation-card">
+        <Col md={6} className="mb-3">
+          <Card className="donation-card jazzcash-card">
             <Card.Body>
-              <h4>Quranic Verse on Charity</h4>
-              <p className="quranic-ayat">
-                <em>
-                  "The example of those who spend their wealth in the way of Allah is like a seed of grain that grows seven ears. In each ear, there are a hundred grains."
-                  <br /> - [Quran 2:261]
-                </em>
-              </p>
-              <p className="urdu-translation mt-3">
-                <em>
-                  "جو لوگ اللہ کی راہ میں اپنے مال خرچ کرتے ہیں، ان کی مثال اس دانے کی طرح ہے جو سات بالیاں نکالے اور ہر بالی میں سو دانے ہوں۔"
-                </em>
-              </p>
+              <div className="logo-section">
+                <img src={jazzcash} alt="JazzCash" className="bank-logo" />
+              </div>
+              <h4>JazzCash</h4>
+              <p><strong>Account Number:</strong> 03000000000</p>
+              <p><strong>Account Holder:</strong> Maqbool & Muddsar</p>
             </Card.Body>
           </Card>
         </Col>
       </Row>
 
-      {/* Contact Form for Donations */}
-      <div className="donation-form my-5">
-        <h3 className="text-center mb-4">Contact Us to Donate</h3>
-        <Form
-          action="https://formspree.io/f/xnnqzopd"
-          method="POST"
-          onSubmit={handleSubmit}
-          className="p-4 bg-light shadow rounded"
-        >
-          <Row className="mb-3">
-            <Col md={6}>
+      {/* Contact Us for Donation */}
+      <div className="contact-us-form mb-5">
+        <Card className="p-4 shadow form-card">
+          <h3 className="text-center mb-4">Contact Us for Donation</h3>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
               <Form.Control
                 type="text"
-                placeholder="Name"
+                placeholder="Enter Your Name"
                 name="name"
                 value={formData.name}
                 onChange={handleFormChange}
                 required
               />
-            </Col>
-            <Col md={6}>
+            </Form.Group>
+            <Form.Group className="mb-3">
               <Form.Control
                 type="text"
                 placeholder="WhatsApp Number"
@@ -122,23 +136,12 @@ const Donation = () => {
                 onChange={handleFormChange}
                 required
               />
-            </Col>
-          </Row>
-          <div className="text-center">
-            <Button type="submit" variant="success">
-              Contact Us
-            </Button>
-          </div>
-        </Form>
-      </div>
-
-      {/* WhatsApp Contact */}
-      <div className="text-center mt-4">
-        <a href="https://wa.me/03058880172" target="_blank" rel="noopener noreferrer">
-          <Button variant="success">
-            <FaWhatsapp size={24} className="me-2" /> Contact via WhatsApp
-          </Button>
-        </a>
+            </Form.Group>
+            <div className="text-center">
+              <Button type="submit" variant="success">Submit</Button>
+            </div>
+          </Form>
+        </Card>
       </div>
 
       {/* Thank You Popup */}
@@ -146,7 +149,7 @@ const Donation = () => {
         <div className="popup-overlay">
           <div className="popup-content">
             <h4>Thank You!</h4>
-            <p>Thank you, {formData.name}! We will get back to you soon on WhatsApp.</p>
+            <p>We will get back to you soon on WhatsApp.</p>
             <Button onClick={() => setShowPopup(false)} variant="primary">
               Close
             </Button>

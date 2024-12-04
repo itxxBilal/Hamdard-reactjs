@@ -13,13 +13,13 @@ import img6 from '../assets/Media Gallery/6.jpeg';
 import img7 from '../assets/Media Gallery/7.jpeg';
 
 const frontendImages = [
-  { id: 'f1', url: img1, name: 'Inauguration Ceremony', description: 'Grand opening event' },
-  { id: 'f2', url: img2, name: 'Medical Camp', description: 'Community medical camp' },
-  { id: 'f3', url: img3, name: 'Community Meeting', description: 'Annual meeting discussion' },
-  { id: 'f4', url: img4, name: 'Charity Drive', description: 'Donation and charity event' },
-  { id: 'f5', url: img5, name: 'Ambulance Service Launch', description: 'Launch of ambulance service' },
-  { id: 'f6', url: img6, name: 'Water Filter Installation', description: 'New water filter plant' },
-  { id: 'f7', url: img7, name: 'Educational Support', description: 'Support for local schools' },
+  { id: 'f1', url: img1, name: 'Old Qabarstan Event', description: 'Old Qabarstan Event' },
+  { id: 'f2', url: img2, name: 'Old Qabarstan Event', description: 'Old Qabarstan Event' },
+  { id: 'f3', url: img3, name: 'Old Qabarstan Event', description: 'Old Qabarstan Event Moment' },
+  { id: 'f4', url: img4, name: 'Plant Dist', description: '' },
+  { id: 'f5', url: img5, name: 'Free Medical Camp For Villager Peoples', description: 'Free Medical Camp For Villager Peoples' },
+  { id: 'f6', url: img6, name: 'Free Medical Camp', description: 'Free Medical Camp For Villager Peoples' },
+  { id: 'f7', url: img7, name: 'Free Medical Camp', description: 'Free Medical Camp For Villager Peoples' },
 ];
 
 const MediaGallery = () => {
