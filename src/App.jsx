@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Donation from './components/Donation';
 import Dashboard from "./components/Dashboard"
-import HamdardCommittee from './components/HamdardCommittee';
 
 const App = () => {
   return (
@@ -22,7 +21,7 @@ const App = () => {
         <Route path="/media" element={<MediaGallery />} />
         <Route path="/donate" element={<Donation/>} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="hamdrd" element={<HamdardCommittee />}/>
+    
       </Routes>
       <Footer />
     </Router>
