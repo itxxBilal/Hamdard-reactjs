@@ -267,7 +267,7 @@ const Home = () => {
                 setIsSubmitted(false); // Reset submission status if needed
                 try {
                   const response = await fetch(
-                    "https://formspree.io/f/xnnqzopd",
+                    "https://formspree.io/f/xpwzezol",
                     {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },

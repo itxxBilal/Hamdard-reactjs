@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { FaCopy, FaWhatsapp } from "react-icons/fa";
+import { FaCopy, FaWhatsapp, FaCheckCircle } from "react-icons/fa";
 import { Carousel, Card, Row, Col, Button, Tooltip, OverlayTrigger, Form } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import jazzcash from '../assets/images/jazzCash.webp';
-import HBL from '../assets/images/HBL.png';
+import jazzcash from "../assets/images/jazzCash.webp";
+import HBL from "../assets/images/HBL.png";
 import "./Donation.css";
 
 const topDonors = [
@@ -22,11 +22,27 @@ const Donation = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowPopup(true);
-    setFormData({ name: "", whatsapp: "" });
+    try {
+      const response = await fetch("https://formspree.io/f/xpwzezol", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setShowPopup(true);
+        setFormData({ name: "", whatsapp: "" });
+      } else {
+        alert("Error submitting form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("There was an error. Please try again later.");
+    }
   };
+
+  const whatsappMessage = `https://wa.me/+923058880172?text=Hello, my name is ${formData.name}. I would like to donate.`;
 
   return (
     <div className="donation-section">
@@ -36,6 +52,7 @@ const Donation = () => {
         className="floating-whatsapp"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Contact us on WhatsApp"
       >
         <FaWhatsapp size={28} />
       </a>
@@ -80,12 +97,12 @@ const Donation = () => {
           <Card className="donation-card bank-card">
             <Card.Body>
               <div className="logo-section">
-                <img src={HBL} alt="HBL Bank" className="bank-logo" />
+                <img src={HBL} alt="HBL Bank Logo" className="bank-logo" />
               </div>
               <h4>HBL Bank</h4>
               <p>
-                <strong>Account Number:</strong> 0023827000583303
-                <CopyToClipboard text="0023827000583303" onCopy={() => setCopied(true)}>
+                <strong>Account Number:</strong> 23827000583303
+                <CopyToClipboard text="23827000583303" onCopy={() => setCopied(true)}>
                   <OverlayTrigger
                     placement="top"
                     overlay={<Tooltip>{copied ? "Copied!" : "Copy to clipboard"}</Tooltip>}
@@ -102,7 +119,7 @@ const Donation = () => {
           <Card className="donation-card jazzcash-card">
             <Card.Body>
               <div className="logo-section">
-                <img src={jazzcash} alt="JazzCash" className="bank-logo" />
+                <img src={jazzcash} alt="JazzCash Logo" className="bank-logo" />
               </div>
               <h4>JazzCash</h4>
               <p><strong>Account Number:</strong> 03000000000</p>
@@ -125,6 +142,7 @@ const Donation = () => {
                 value={formData.name}
                 onChange={handleFormChange}
                 required
+                aria-label="Enter your name"
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -135,6 +153,7 @@ const Donation = () => {
                 value={formData.whatsapp}
                 onChange={handleFormChange}
                 required
+                aria-label="Enter your WhatsApp number"
               />
             </Form.Group>
             <div className="text-center">
@@ -148,6 +167,7 @@ const Donation = () => {
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
+            <FaCheckCircle size={50} color="green" className="mb-3" />
             <h4>Thank You!</h4>
             <p>We will get back to you soon on WhatsApp.</p>
             <Button onClick={() => setShowPopup(false)} variant="primary">

@@ -20,7 +20,7 @@ const About = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("https://formspree.io/f/xnnqzopd", {
+    fetch("https://formspree.io/f/xpwzezol", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
