@@ -9,7 +9,8 @@ import MediaGallery from './components/MediaGallery';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Donation from './components/Donation';
-import AdminDashboard from "./components/AdminDashboard"
+import Dashboard from "./components/Dashboard"
+import HamdardCommittee from './components/HamdardCommittee';
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/media" element={<MediaGallery />} />
         <Route path="/donate" element={<Donation/>} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="hamdrd" element={<HamdardCommittee />}/>
       </Routes>
       <Footer />
     </Router>

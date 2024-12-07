@@ -7,9 +7,9 @@ import HBL from '../assets/images/HBL.png';
 import "./Donation.css";
 
 const topDonors = [
-  { name: "Muhammad Hanif", amount: "Rs:6500" },
-  { name: "Muhammad Asif", amount: "Rs:1000" },
-  { name: "Muhammad Anwar", amount: "Rs:1000" },
+  { name: "Saif UR Rehman", amount: "Rs:20,000" },
+  { name: "Nadeem Khan", amount: "Rs:5,000" },
+  { name: "Aslam Rehmani", amount: "Rs:4,000" },
 ];
 
 const Donation = () => {
