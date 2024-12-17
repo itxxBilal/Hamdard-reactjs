@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table, Button, Modal, Form } from "react-bootstrap";
-import { FaTrash, FaEdit, FaUpload } from "react-icons/fa";
+import { Container, Table, Button, Form, Modal, Alert } from "react-bootstrap";
+import "./Dashboard.css";
+import MediaGallery from "../components/MediaGallery";
 
 const Dashboard = () => {
   const [images, setImages] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [newImageFile, setNewImageFile] = useState(null);
-  const [newImage, setNewImage] = useState({ name: "", description: "" });
+  const [modalType, setModalType] = useState(""); // 'add' or 'edit'
+  const [currentImage, setCurrentImage] = useState({ id: "", name: "", description: "", url: "" });
+  const [showAlert, setShowAlert] = useState({ visible: false, message: "" });
 
   useEffect(() => {
     fetchImages();
@@ -18,87 +20,89 @@ const Dashboard = () => {
     setImages(data);
   };
 
-  const handleFileChange = (e) => {
-    setNewImageFile(e.target.files[0]);
+  const handleShowModal = (type, image = {}) => {
+    setModalType(type);
+    setCurrentImage(image);
+    setShowModal(true);
   };
 
-  const handleUploadImage = async () => {
-    if (!newImageFile) {
-      alert("Please select an image file to upload.");
-      return;
-    }
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setCurrentImage({ id: "", name: "", description: "", url: "" });
+  };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentImage((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
-    formData.append("file", newImageFile);
-    formData.append("name", newImage.name);
-    formData.append("description", newImage.description);
+    formData.append("name", currentImage.name);
+    formData.append("description", currentImage.description);
+    formData.append("image", currentImage.file);
 
-    try {
-      const res = await fetch("http://localhost:5000/api/upload", {
-        method: "POST",
-        body: formData,
-      });
+    const endpoint = modalType === "add" ? "http://localhost:5000/api/images" : `http://localhost:5000/api/images/${currentImage.id}`;
+    const method = modalType === "add" ? "POST" : "PUT";
 
-      if (res.ok) {
-        alert("Image uploaded successfully!");
-        fetchImages();
-        setShowModal(false);
-        setNewImageFile(null);
-        setNewImage({ name: "", description: "" });
-      } else {
-        alert("Failed to upload image. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      alert("An error occurred. Please try again.");
-    }
+    await fetch(endpoint, {
+      method,
+      body: formData,
+    });
+
+    fetchImages();
+    handleCloseModal();
+    setShowAlert({ visible: true, message: `Image ${modalType === "add" ? "added" : "updated"} successfully!` });
   };
 
-  const handleDeleteImage = async (id) => {
-    try {
-      const res = await fetch(`http://localhost:5000/api/images/${id}`, {
-        method: "DELETE",
-      });
-
-      if (res.ok) {
-        alert("Image deleted successfully!");
-        fetchImages();
-      } else {
-        alert("Failed to delete image.");
-      }
-    } catch (error) {
-      console.error("Error deleting image:", error);
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this image?")) {
+      await fetch(`http://localhost:5000/api/images/${id}`, { method: "DELETE" });
+      fetchImages();
+      setShowAlert({ visible: true, message: "Image deleted successfully!" });
     }
   };
 
   return (
     <Container className="mt-5">
-      <h1 className="mb-4">Dashboard - Manage Images</h1>
-      <Button variant="primary" className="mb-3" onClick={() => setShowModal(true)}>
-        <FaUpload /> Upload New Image
+      <h1 className="text-center mb-4">Admin Dashboard</h1>
+
+      {showAlert.visible && <Alert variant="success" onClose={() => setShowAlert({ visible: false })} dismissible>{showAlert.message}</Alert>}
+
+      <Button variant="primary" className="mb-3" onClick={() => handleShowModal("add")}>
+        Add New Image
       </Button>
+
+       {/* Media Gallery */}
+       <h2 className="mt-4">Media Gallery</h2>
+      <MediaGallery />
+
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
-            <th>Image</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Preview</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {images.map((img, index) => (
-            <tr key={img.id}>
+          {images.map((image, index) => (
+            <tr key={image.id}>
               <td>{index + 1}</td>
+              <td>{image.name}</td>
+              <td>{image.description}</td>
               <td>
-                <img src={img.url} alt={img.name} style={{ width: "100px", height: "auto" }} />
+                <img src={`http://localhost:5000${image.url}`} alt={image.name} className="img-thumbnail" style={{ width: "100px" }} />
               </td>
-              <td>{img.name}</td>
-              <td>{img.description}</td>
               <td>
-                <Button variant="danger" onClick={() => handleDeleteImage(img.id)}>
-                  <FaTrash />
+                <Button variant="warning" onClick={() => handleShowModal("edit", image)} className="me-2">
+                  Edit
+                </Button>
+                <Button variant="danger" onClick={() => handleDelete(image.id)}>
+                  Delete
                 </Button>
               </td>
             </tr>
@@ -106,45 +110,46 @@ const Dashboard = () => {
         </tbody>
       </Table>
 
-      {/* Modal for Image Upload */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+      {/* Modal */}
+      <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Upload New Image</Modal.Title>
+          <Modal.Title>{modalType === "add" ? "Add Image" : "Edit Image"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={currentImage.name}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                name="description"
+                value={currentImage.description}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Image File</Form.Label>
-              <Form.Control type="file" onChange={handleFileChange} />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Image Name</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter image name"
-                value={newImage.name}
-                onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
+                type="file"
+                name="file"
+                onChange={(e) => setCurrentImage({ ...currentImage, file: e.target.files[0] })}
+                required={modalType === "add"}
               />
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Image Description</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter image description"
-                value={newImage.description}
-                onChange={(e) => setNewImage({ ...newImage, description: e.target.value })}
-              />
-            </Form.Group>
+            <Button variant="primary" type="submit">
+              Save
+            </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleUploadImage}>
-            Upload
-          </Button>
-        </Modal.Footer>
       </Modal>
     </Container>
   );

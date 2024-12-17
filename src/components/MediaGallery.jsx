@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
-import { FaEye, FaShareAlt, FaDownload } from 'react-icons/fa';  // Import React Icons
-import './MediaGallery.css';
+import { FaEye, FaShareAlt, FaDownload } from "react-icons/fa"; // Import React Icons
+import "./MediaGallery.css";
 
 // Import frontend images
-import img1 from '../assets/Media Gallery/1.jpeg';
-import img2 from '../assets/Media Gallery/2.jpeg';
-import img3 from '../assets/Media Gallery/3.jpeg';
-import img4 from '../assets/Media Gallery/4.jpeg';
-import img5 from '../assets/Media Gallery/5.jpeg';
-import img6 from '../assets/Media Gallery/6.jpeg';
-import img7 from '../assets/Media Gallery/7.jpeg';
+import img1 from "../assets/Media Gallery/1.jpeg";
+import img2 from "../assets/Media Gallery/2.jpeg";
+import img3 from "../assets/Media Gallery/3.jpeg";
+import img4 from "../assets/Media Gallery/4.jpeg";
+import img5 from "../assets/Media Gallery/5.jpeg";
+import img6 from "../assets/Media Gallery/6.jpeg";
+import img7 from "../assets/Media Gallery/7.jpeg";
 
 const frontendImages = [
-  { id: 'f1', url: img1, name: 'Old Qabarstan Event', description: 'Old Qabarstan Event' },
-  { id: 'f2', url: img2, name: 'Old Qabarstan Event', description: 'Old Qabarstan Event' },
-  { id: 'f3', url: img3, name: 'Old Qabarstan Event', description: 'Old Qabarstan Event Moment' },
-  { id: 'f4', url: img4, name: 'Plant Dist', description: '' },
-  { id: 'f5', url: img5, name: 'Free Medical Camp For Villager Peoples', description: 'Free Medical Camp For Villager Peoples' },
-  { id: 'f6', url: img6, name: 'Free Medical Camp', description: 'Free Medical Camp For Villager Peoples' },
-  { id: 'f7', url: img7, name: 'Free Medical Camp', description: 'Free Medical Camp For Villager Peoples' },
+  { id: "f1", url: img1, name: "Old Qabarstan Event", description: "Old Qabarstan Event" },
+  { id: "f2", url: img2, name: "Old Qabarstan Event", description: "Old Qabarstan Event" },
+  { id: "f3", url: img3, name: "Old Qabarstan Event", description: "Old Qabarstan Event Moment" },
+  { id: "f4", url: img4, name: "Plant Dist", description: "" },
+  { id: "f5", url: img5, name: "Free Medical Camp For Villager Peoples", description: "Free Medical Camp For Villager Peoples" },
+  { id: "f6", url: img6, name: "Free Medical Camp", description: "Free Medical Camp For Villager Peoples" },
+  { id: "f7", url: img7, name: "Free Medical Camp", description: "Free Medical Camp For Villager Peoples" },
 ];
 
 const MediaGallery = () => {
@@ -27,23 +27,39 @@ const MediaGallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
 
+  // Fetch backend images on component mount
   useEffect(() => {
     fetchImages();
   }, []);
 
+  // Function to fetch images from backend
   const fetchImages = async () => {
-    const res = await fetch("http://localhost:5000/api/images");
-    const data = await res.json();
-    setBackendImages(data);
+    try {
+      const res = await fetch("http://localhost:5000/api/images");
+      const data = await res.json();
+
+      // Fix backend URLs: Add base URL to the 'url' property
+      const updatedImages = data.map((image) => ({
+        ...image,
+        url: `http://localhost:5000${image.url}`, // Prefix with backend server
+      }));
+
+      setBackendImages(updatedImages);
+    } catch (error) {
+      console.error("Error fetching backend images:", error);
+    }
   };
 
+  // Function to open modal for viewing image
   const handleShowModal = (image) => {
     setCurrentImage(image);
     setShowModal(true);
   };
 
+  // Function to close modal
   const handleCloseModal = () => setShowModal(false);
 
+  // Function to download image
   const handleDownload = (url) => {
     const a = document.createElement("a");
     a.href = url;
@@ -51,11 +67,13 @@ const MediaGallery = () => {
     a.click();
   };
 
+  // Function to share image URL
   const handleShare = (url) => {
     navigator.clipboard.writeText(url);
     alert("Image URL copied to clipboard!");
   };
 
+  // Combine frontend and backend images
   const allImages = [...frontendImages, ...backendImages];
 
   return (
@@ -74,13 +92,34 @@ const MediaGallery = () => {
               <div className="img-container" onClick={() => handleShowModal(image)}>
                 <Card.Img variant="top" src={image.url} className="card-img" />
                 <div className="overlay">
-                  <Button variant="light" className="overlay-btn" onClick={(e) => { e.stopPropagation(); handleShare(image.url); }}>
+                  <Button
+                    variant="light"
+                    className="overlay-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleShare(image.url);
+                    }}
+                  >
                     <FaShareAlt />
                   </Button>
-                  <Button variant="light" className="overlay-btn" onClick={(e) => { e.stopPropagation(); handleDownload(image.url); }}>
+                  <Button
+                    variant="light"
+                    className="overlay-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDownload(image.url);
+                    }}
+                  >
                     <FaDownload />
                   </Button>
-                  <Button variant="light" className="overlay-btn" onClick={(e) => { e.stopPropagation(); handleShowModal(image); }}>
+                  <Button
+                    variant="light"
+                    className="overlay-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleShowModal(image);
+                    }}
+                  >
                     <FaEye />
                   </Button>
                 </div>
