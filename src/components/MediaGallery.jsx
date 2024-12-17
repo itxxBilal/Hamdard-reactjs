@@ -27,6 +27,8 @@ const MediaGallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
 
+  const BACKEND_URL = "https://itxbilal.pythonanywhere.com";
+
   // Fetch backend images on component mount
   useEffect(() => {
     fetchImages();
@@ -35,13 +37,13 @@ const MediaGallery = () => {
   // Function to fetch images from backend
   const fetchImages = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/images");
+      const res = await fetch(`${BACKEND_URL}/api/images`);
       const data = await res.json();
 
-      // Fix backend URLs: Add base URL to the 'url' property
+      // Fix backend URLs: Add base URL to the 'url' property if not absolute
       const updatedImages = data.map((image) => ({
         ...image,
-        url: `http://localhost:5000${image.url}`, // Prefix with backend server
+        url: image.url.startsWith("http") ? image.url : `${BACKEND_URL}${image.url}`,
       }));
 
       setBackendImages(updatedImages);

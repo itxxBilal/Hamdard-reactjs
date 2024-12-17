@@ -10,14 +10,20 @@ const Dashboard = () => {
   const [currentImage, setCurrentImage] = useState({ id: "", name: "", description: "", url: "" });
   const [showAlert, setShowAlert] = useState({ visible: false, message: "" });
 
+  const BACKEND_URL = "https://itxbilal.pythonanywhere.com";
+
   useEffect(() => {
     fetchImages();
   }, []);
 
   const fetchImages = async () => {
-    const res = await fetch("http://localhost:5000/api/images");
-    const data = await res.json();
-    setImages(data);
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/images`);
+      const data = await res.json();
+      setImages(data);
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    }
   };
 
   const handleShowModal = (type, image = {}) => {
@@ -38,29 +44,45 @@ const Dashboard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", currentImage.name);
-    formData.append("description", currentImage.description);
-    formData.append("image", currentImage.file);
+    try {
+      const formData = new FormData();
+      formData.append("name", currentImage.name);
+      formData.append("description", currentImage.description);
+      if (currentImage.file) {
+        formData.append("image", currentImage.file);
+      }
 
-    const endpoint = modalType === "add" ? "http://localhost:5000/api/images" : `http://localhost:5000/api/images/${currentImage.id}`;
-    const method = modalType === "add" ? "POST" : "PUT";
+      const endpoint =
+        modalType === "add"
+          ? `${BACKEND_URL}/api/images`
+          : `${BACKEND_URL}/api/images/${currentImage.id}`;
+      const method = modalType === "add" ? "POST" : "PUT";
 
-    await fetch(endpoint, {
-      method,
-      body: formData,
-    });
+      await fetch(endpoint, {
+        method,
+        body: formData,
+      });
 
-    fetchImages();
-    handleCloseModal();
-    setShowAlert({ visible: true, message: `Image ${modalType === "add" ? "added" : "updated"} successfully!` });
+      fetchImages();
+      handleCloseModal();
+      setShowAlert({
+        visible: true,
+        message: `Image ${modalType === "add" ? "added" : "updated"} successfully!`,
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this image?")) {
-      await fetch(`http://localhost:5000/api/images/${id}`, { method: "DELETE" });
-      fetchImages();
-      setShowAlert({ visible: true, message: "Image deleted successfully!" });
+      try {
+        await fetch(`${BACKEND_URL}/api/images/${id}`, { method: "DELETE" });
+        fetchImages();
+        setShowAlert({ visible: true, message: "Image deleted successfully!" });
+      } catch (error) {
+        console.error("Error deleting image:", error);
+      }
     }
   };
 
@@ -68,14 +90,26 @@ const Dashboard = () => {
     <Container className="mt-5">
       <h1 className="text-center mb-4">Admin Dashboard</h1>
 
-      {showAlert.visible && <Alert variant="success" onClose={() => setShowAlert({ visible: false })} dismissible>{showAlert.message}</Alert>}
+      {showAlert.visible && (
+        <Alert
+          variant="success"
+          onClose={() => setShowAlert({ visible: false })}
+          dismissible
+        >
+          {showAlert.message}
+        </Alert>
+      )}
 
-      <Button variant="primary" className="mb-3" onClick={() => handleShowModal("add")}>
+      <Button
+        variant="primary"
+        className="mb-3"
+        onClick={() => handleShowModal("add")}
+      >
         Add New Image
       </Button>
 
-       {/* Media Gallery */}
-       <h2 className="mt-4">Media Gallery</h2>
+      {/* Media Gallery */}
+      <h2 className="mt-4">Media Gallery</h2>
       <MediaGallery />
 
       <Table striped bordered hover>
@@ -95,13 +129,25 @@ const Dashboard = () => {
               <td>{image.name}</td>
               <td>{image.description}</td>
               <td>
-                <img src={`http://localhost:5000${image.url}`} alt={image.name} className="img-thumbnail" style={{ width: "100px" }} />
+                <img
+                  src={`${BACKEND_URL}${image.url}`}
+                  alt={image.name}
+                  className="img-thumbnail"
+                  style={{ width: "100px" }}
+                />
               </td>
               <td>
-                <Button variant="warning" onClick={() => handleShowModal("edit", image)} className="me-2">
+                <Button
+                  variant="warning"
+                  onClick={() => handleShowModal("edit", image)}
+                  className="me-2"
+                >
                   Edit
                 </Button>
-                <Button variant="danger" onClick={() => handleDelete(image.id)}>
+                <Button
+                  variant="danger"
+                  onClick={() => handleDelete(image.id)}
+                >
                   Delete
                 </Button>
               </td>
@@ -113,7 +159,9 @@ const Dashboard = () => {
       {/* Modal */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>{modalType === "add" ? "Add Image" : "Edit Image"}</Modal.Title>
+          <Modal.Title>
+            {modalType === "add" ? "Add Image" : "Edit Image"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -141,7 +189,9 @@ const Dashboard = () => {
               <Form.Control
                 type="file"
                 name="file"
-                onChange={(e) => setCurrentImage({ ...currentImage, file: e.target.files[0] })}
+                onChange={(e) =>
+                  setCurrentImage({ ...currentImage, file: e.target.files[0] })
+                }
                 required={modalType === "add"}
               />
             </Form.Group>
