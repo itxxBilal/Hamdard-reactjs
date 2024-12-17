@@ -47,6 +47,11 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link px-3 text-white hover-effect" to="/dashboard" onClick={closeNav}>
+                <i className="fas fa-tachometer-alt me-2"></i>Dashboard
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="btn btn-primary text-white fw-bold donate-now-btn px-4 py-2" to="/donate" onClick={closeNav}>
                 <i className="fas fa-heart me-2"></i>Donate Now
               </Link>
