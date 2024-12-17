@@ -8,6 +8,7 @@ import "./Donation.css";
 
 const topDonors = [
   { name: "Saif-Ur-Rehman", amount: "Rs:20,000" },
+  { name: "Ashraf Shafi", amount: "Rs:25,000" },
   { name: "Nadeem Khan", amount: "Rs:5,000" },
   { name: "Aslam Rehmani", amount: "Rs:4,000" },
 ];
