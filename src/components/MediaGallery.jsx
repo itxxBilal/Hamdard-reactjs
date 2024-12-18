@@ -27,7 +27,8 @@ const MediaGallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentImage, setCurrentImage] = useState(null);
 
-  const BACKEND_URL = "https://itxbilal.pythonanywhere.com";
+  const BACKEND_URL = "https://itxbilal.pythonanywhere.com/"; // Replace with your backend's base URL
+
 
   // Fetch backend images on component mount
   useEffect(() => {
